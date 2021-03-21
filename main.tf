@@ -28,6 +28,9 @@ resource "vault_pki_secret_backend_role" "server" {
   
   name = "server"
   backend = module.this.authority.backend
+  
+  server_flag = true
+  client_flag = false
 }
 
 resource "vault_pki_secret_backend_role" "client" {
@@ -35,6 +38,9 @@ resource "vault_pki_secret_backend_role" "client" {
   
   name = "client"
   backend = module.this.authority.backend
+  
+  server_flag = false
+  client_flag = true
 }
     
 resource "vault_pki_secret_backend_role" "peer" {
@@ -42,4 +48,7 @@ resource "vault_pki_secret_backend_role" "peer" {
   
   name = "peer"
   backend = module.this.authority.backend
+    
+  server_flag = true
+  client_flag = true
 }
